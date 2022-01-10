@@ -5,6 +5,8 @@ const dev = require('./webpack.dev')
 const prod = require('./webpack.pro')
 const { promptList } = require("./tool/pageList");
 const { generatePageList, generateEnteryList, resolve } = require("./tool/tool");
+const dotenv = require('dotenv')
+process.env.PROJECT_ENV ? dotenv.config({ path: resolve(`.env.${process.env.PROJECT_ENV}`) }) : ''
 module.exports = async(env) => {
     const isProd = env.production === true;
     let res = await inquirer.prompt(promptList);
